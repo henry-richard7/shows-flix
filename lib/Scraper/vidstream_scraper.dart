@@ -3,13 +3,13 @@ import 'package:html/dom.dart' as dom;
 
 class VidstreamScraper {
   static const String baseUrl = "https://asianload.io";
+  static const Map<String, String> headers = {
+    "User-Agent":
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.0.43 Safari/537.36"
+  };
+
   static Future<List<Map<String, dynamic>>> recentlyAdded() async {
     List<Map<String, dynamic>> results = <Map<String, dynamic>>[];
-
-    var headers = {
-      "User-Agent":
-          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.0.43 Safari/537.36"
-    };
 
     var request = await http.get(Uri.parse("$baseUrl/?page=1"));
     request.headers.addAll(headers);
