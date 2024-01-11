@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shows_flix/Pages/home_page.dart';
 import 'package:shows_flix/Scraper/vidstream_scraper.dart';
 
 void main() {
@@ -18,15 +19,12 @@ class _MainAppState extends State<MainApp> {
     VidstreamScraper.recentlyAdded();
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text("ShowsFlix"),
-          titleTextStyle: const TextStyle(color: Colors.white, fontSize: 20),
-          backgroundColor: Colors.blue,
-        ),
-        body: const Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+          appBar: AppBar(
+            title: const Text("ShowsFlix"),
+            titleTextStyle: const TextStyle(color: Colors.white, fontSize: 20),
+            backgroundColor: Colors.blue,
+          ),
+          body: HomePageWidget()),
     );
   }
 }
