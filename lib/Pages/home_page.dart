@@ -10,11 +10,15 @@ class HomePageWidget extends StatefulWidget {
 }
 
 class _HomePageWidgetState extends State<HomePageWidget> {
-  List<Map<String, dynamic>> data = [];
+  List<Map<String, dynamic>> recentlyAddedSubs = [];
+  List<Map<String, dynamic>> recentlyAddedRaws = [];
+
   @override
   void initState() {
     super.initState();
-    VidstreamScraper.recentlyAdded().then((value) => data = value);
+    VidstreamScraper.recentlyAdded().then((value) => recentlyAddedSubs = value);
+    VidstreamScraper.recentlyAddedRaw()
+        .then((value) => recentlyAddedRaws = value);
   }
 
   @override
@@ -22,9 +26,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     return ListView(children: [
       const Padding(
         padding: EdgeInsets.all(8.0),
-        child: Text("Recently Updated"),
+        child: Text("Recently Updated Subs"),
       ),
-      HomePageWidgets.homePageGrid(data),
+      HomePageWidgets.homePageGrid(recentlyAddedSubs),
+      const Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Text("Recently Updated Raws"),
+      ),
+      HomePageWidgets.homePageGrid(recentlyAddedRaws),
     ]);
   }
 }
