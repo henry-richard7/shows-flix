@@ -24,7 +24,7 @@ class _MainAppState extends State<MainApp> {
             titleTextStyle: const TextStyle(color: Colors.white, fontSize: 20),
             backgroundColor: Colors.blue,
           ),
-          body: HomePageWidget()),
+          body: const HomePageWidget()),
     );
   }
 }

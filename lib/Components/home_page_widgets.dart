@@ -20,7 +20,10 @@ class HomePageWidgets {
                       pageData[index]['image'],
                       scale: 0.1,
                     )),
-                    Text(pageData[index]['title']),
+                    Text(
+                      pageData[index]['title'],
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
                     Text(pageData[index]['release_date'])
                   ],
                 ),
