@@ -13,27 +13,32 @@ class HomePageWidgets {
           ),
           itemCount: pageData.length,
           itemBuilder: (builder, index) {
-            return homePageCard(pageData, index, context);
+            String title = pageData[index]['title'];
+            String image = pageData[index]['image'];
+            String releaseDate = pageData[index]['release_date'];
+            String link = pageData[index]['link'];
+
+            return homePageCard(title, image, releaseDate, link, context);
           }),
     );
   }
 
-  static Card homePageCard(
-      List<Map<String, dynamic>> pageData, int index, BuildContext context) {
+  static Card homePageCard(String title, String image, String releaseDate,
+      String link, BuildContext context) {
     return Card(
       child: InkWell(
         child: Column(
           children: [
             Flexible(
                 child: Image.network(
-              pageData[index]['image'],
+              image,
               scale: 0.1,
             )),
             Text(
-              pageData[index]['title'],
+              title,
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
-            Text(pageData[index]['release_date'])
+            Text(releaseDate)
           ],
         ),
         onTap: () => {
@@ -41,7 +46,7 @@ class HomePageWidgets {
               context,
               MaterialPageRoute(
                   builder: (context) => EpisodesPage(
-                        episodeUrl: pageData[index]['link'],
+                        episodeUrl: link,
                       )))
         },
       ),
