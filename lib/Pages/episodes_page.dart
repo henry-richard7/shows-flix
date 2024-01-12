@@ -44,7 +44,8 @@ class _EpisodesPageState extends State<EpisodesPage> {
                   episodesData[index]['title'],
                   episodesData[index]["image"],
                   episodesData[index]["release_date"],
-                  episodesData[index]['link']);
+                  episodesData[index]['link'],
+                  context);
             }),
       ),
     );
