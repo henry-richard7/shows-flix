@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class EpisodeCardComponent {
-  static Card EpisodeCard(
+  static Card episodeCard(
       String title, String image, String releaseDate, String href) {
     return Card(
       margin: const EdgeInsets.all(10),

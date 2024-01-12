@@ -40,7 +40,7 @@ class _EpisodesPageState extends State<EpisodesPage> {
         body: ListView.builder(
             itemCount: episodesData.length,
             itemBuilder: (BuildContext context, int index) {
-              return EpisodeCardComponent.EpisodeCard(
+              return EpisodeCardComponent.episodeCard(
                   episodesData[index]['title'],
                   episodesData[index]["image"],
                   episodesData[index]["release_date"],
