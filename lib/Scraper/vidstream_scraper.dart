@@ -146,14 +146,13 @@ class VidstreamScraper {
 
   static Future<List<Map<String, dynamic>>> episodesList(String url) async {
     List<Map<String, dynamic>> episodes = [];
-
     var request = await http.get(Uri.parse(url));
     request.headers.addAll(headers);
 
     dom.Document episodePageDom = dom.Document.html(request.body);
 
     List<dom.Element> episodeItems =
-        episodePageDom.querySelectorAll("ul[class='listing items list'] > li");
+        episodePageDom.querySelectorAll("ul[class='listing items lists'] > li");
 
     for (var element in episodeItems) {
       dom.Element? title = element.querySelector("div[class='name']");

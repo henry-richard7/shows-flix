@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shows_flix/Components/episode_card_component.dart';
+import 'package:shows_flix/Scraper/vidstream_scraper.dart';
 
 class EpisodesPage extends StatefulWidget {
   const EpisodesPage({super.key, required this.episodeUrl});
@@ -9,9 +11,18 @@ class EpisodesPage extends StatefulWidget {
 }
 
 class _EpisodesPageState extends State<EpisodesPage> {
+  List<Map<String, dynamic>> episodesData = [];
+  @override
+  void initState() {
+    super.initState();
+    VidstreamScraper.episodesList(widget.episodeUrl).then((value) {
+      episodesData = value;
+      setState(() {});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    //print();
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -26,6 +37,15 @@ class _EpisodesPageState extends State<EpisodesPage> {
             onPressed: () => (Navigator.pop(context)),
           ),
         ),
+        body: ListView.builder(
+            itemCount: episodesData.length,
+            itemBuilder: (BuildContext context, int index) {
+              return EpisodeCardComponent.EpisodeCard(
+                  episodesData[index]['title'],
+                  episodesData[index]["image"],
+                  episodesData[index]["release_date"],
+                  episodesData[index]['link']);
+            }),
       ),
     );
   }
