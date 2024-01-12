@@ -50,14 +50,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
       ),
-      HomePageWidgets.homePageGrid(recentlyAddedSubs),
+      HomePageWidgets.homePageGrid(recentlyAddedSubs, context),
       const Padding(
           padding: EdgeInsets.all(8.0),
           child: Text(
             "Recently Updated Raws",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
           )),
-      HomePageWidgets.homePageGrid(recentlyAddedRaws),
+      HomePageWidgets.homePageGrid(recentlyAddedRaws, context),
       const Padding(
         padding: EdgeInsets.all(8.0),
         child: Text(
@@ -65,7 +65,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
       ),
-      HomePageWidgets.homePageGrid(recentlyAddedMovies),
+      HomePageWidgets.homePageGrid(recentlyAddedMovies, context),
       const Padding(
         padding: EdgeInsets.all(8.0),
         child: Text(
@@ -73,7 +73,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
       ),
-      HomePageWidgets.homePageGrid(popularShows),
+      HomePageWidgets.homePageGrid(popularShows, context),
       const Padding(
         padding: EdgeInsets.all(8.0),
         child: Text(
@@ -81,7 +81,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
       ),
-      HomePageWidgets.homePageGrid(ongoingShows),
+      HomePageWidgets.homePageGrid(ongoingShows, context),
     ]);
   }
 }

@@ -143,4 +143,32 @@ class VidstreamScraper {
 
     return results;
   }
+
+  static Future<List<Map<String, dynamic>>> episodesList(String url) async {
+    List<Map<String, dynamic>> episodes = [];
+
+    var request = await http.get(Uri.parse(url));
+    request.headers.addAll(headers);
+
+    dom.Document episodePageDom = dom.Document.html(request.body);
+
+    List<dom.Element> episodeItems =
+        episodePageDom.querySelectorAll("ul[class='listing items list'] > li");
+
+    for (var element in episodeItems) {
+      dom.Element? title = element.querySelector("div[class='name']");
+      dom.Element? link = element.querySelector('a');
+      dom.Element? image = element.querySelector('a > div > div > img');
+      dom.Element? releasedDate = element.querySelector("a > div > span");
+
+      episodes.add({
+        "title": title!.text.trim(),
+        "image": image!.attributes['src'],
+        "link": "$baseUrl${link!.attributes['href']}",
+        'release_date': releasedDate!.text.trim()
+      });
+    }
+
+    return episodes;
+  }
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:shows_flix/Pages/episodes_page.dart';
 
 class HomePageWidgets {
-  static SizedBox homePageGrid(List<Map<String, dynamic>> pageData) {
+  static SizedBox homePageGrid(
+      List<Map<String, dynamic>> pageData, BuildContext context) {
     return SizedBox(
       height: 280,
       child: GridView.builder(
@@ -27,7 +29,14 @@ class HomePageWidgets {
                     Text(pageData[index]['release_date'])
                   ],
                 ),
-                onTap: () => print(pageData[index]['link']),
+                onTap: () => {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => EpisodesPage(
+                                episodeUrl: pageData[index]['link'],
+                              )))
+                },
               ),
             );
           }),
