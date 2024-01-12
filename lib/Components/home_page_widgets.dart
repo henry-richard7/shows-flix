@@ -47,6 +47,8 @@ class HomePageWidgets {
               MaterialPageRoute(
                   builder: (context) => EpisodesPage(
                         episodeUrl: link,
+                        title: title,
+                        image: image,
                       )))
         },
       ),

@@ -154,6 +154,9 @@ class VidstreamScraper {
     List<dom.Element> episodeItems =
         episodePageDom.querySelectorAll("ul[class='listing items lists'] > li");
 
+    dom.Element? description =
+        episodePageDom.querySelector("div[class='content-more-js']");
+
     for (var element in episodeItems) {
       dom.Element? title = element.querySelector("div[class='name']");
       dom.Element? link = element.querySelector('a');
@@ -164,7 +167,8 @@ class VidstreamScraper {
         "title": title!.text.trim(),
         "image": image!.attributes['src'],
         "link": "$baseUrl${link!.attributes['href']}",
-        'release_date': releasedDate!.text.trim()
+        'release_date': releasedDate!.text.trim(),
+        'description': description!.text.trim()
       });
     }
 
