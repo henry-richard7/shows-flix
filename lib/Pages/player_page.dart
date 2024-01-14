@@ -10,6 +10,15 @@ class VideoPlayerPage extends StatefulWidget {
 }
 
 class _VideoPlayerPageState extends State<VideoPlayerPage> {
+  Map<String, dynamic> directLink = {};
+  @override
+  void initState() {
+    super.initState();
+    VidstreamScraper.directLinks(widget.finalUrl).then((value) {
+      directLink = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
