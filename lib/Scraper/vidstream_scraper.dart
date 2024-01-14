@@ -1,5 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'package:html/dom.dart' as dom;
+import 'package:encrypt/encrypt.dart';
 
 class VidstreamScraper {
   static const String baseUrl = "https://asianload.io";
@@ -7,6 +8,21 @@ class VidstreamScraper {
     "User-Agent":
         "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.0.43 Safari/537.36"
   };
+
+  static final key = Key.fromUtf8("93422192433952489752342908585752");
+  static final iv = IV.fromUtf8("9262859232435825");
+
+  String encrypt(String message) {
+    final encrypter = Encrypter(AES(key, mode: AESMode.cbc));
+    final encrypted = encrypter.encrypt(message, iv: iv);
+    return encrypted.base64;
+  }
+
+  String decrypt(String message) {
+    final encrypter = Encrypter(AES(key, mode: AESMode.cbc));
+    final decrypted = encrypter.decrypt(Encrypted.fromBase64(message), iv: iv);
+    return decrypted;
+  }
 
   static Future<List<Map<String, dynamic>>> recentlyAdded() async {
     List<Map<String, dynamic>> results = <Map<String, dynamic>>[];

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shows_flix/Scraper/vidstream_scraper.dart';
 
 class VideoPlayerPage extends StatefulWidget {
   const VideoPlayerPage({super.key, required this.finalUrl});
