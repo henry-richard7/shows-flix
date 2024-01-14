@@ -10,6 +10,9 @@ dependencies:
   http: ^1.1.2
   html: any
   encrypt: ^5.0.3
+  media_kit: ^1.1.10+1
+  media_kit_video: ^1.2.4
+  media_kit_libs_video: ^1.0.4
   flutter:
     sdk: flutter
 
