@@ -193,8 +193,6 @@ class VidstreamScraper {
   }
 
   static Future<Map<String, dynamic>> directLinks(String url) async {
-    Map<String, dynamic> directFiles = {};
-
     var request = await http.get(Uri.parse(url));
     request.headers.addAll(headers);
 
