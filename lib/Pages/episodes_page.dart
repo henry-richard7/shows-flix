@@ -104,6 +104,7 @@ class _EpisodesPageState extends State<EpisodesPage> {
                 ),
               ),
             ),
+            const Text("Select an Episode to play."),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -112,7 +113,7 @@ class _EpisodesPageState extends State<EpisodesPage> {
                     itemBuilder: (BuildContext context, int index) {
                       return EpisodeCardComponent.episodeCard(
                           episodesData[index]['title'],
-                          episodesData[index]["image"],
+                          widget.image,
                           episodesData[index]["release_date"],
                           episodesData[index]['link'],
                           context,
