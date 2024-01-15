@@ -32,11 +32,11 @@ jobs:
         with:
           channel: "stable"
       - run: flutter pub get
-      - run: flutter build apk --debug --split-per-abi
+      - run: flutter build apk --release --split-per-abi
       - name: Create Android Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "build/app/outputs/apk/debug/*"
+          artifacts: "build/app/outputs/flutter-apk/*.apk"
           allowUpdates: true
           tag: v1.0${{github.run_number}}
           token: ${{ secrets.GITHUB_TOKEN }}
