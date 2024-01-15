@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shows_flix/Components/episode_card_component.dart';
 import 'package:shows_flix/Pages/episodes_page.dart';
 import 'package:shows_flix/Scraper/vidstream_scraper.dart';
 
