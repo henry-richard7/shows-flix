@@ -34,9 +34,12 @@ class HomePageWidgets {
               image,
               scale: 0.1,
             )),
-            Text(
-              title,
-              style: const TextStyle(fontWeight: FontWeight.bold),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                title,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
             ),
             Text(releaseDate)
           ],

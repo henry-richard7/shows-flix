@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:media_kit/media_kit.dart';
+import 'package:media_kit_video/media_kit_video.dart';
 import 'package:shows_flix/Components/episode_card_component.dart';
 import 'package:shows_flix/Scraper/vidstream_scraper.dart';
 
@@ -19,14 +21,25 @@ class EpisodesPage extends StatefulWidget {
 class _EpisodesPageState extends State<EpisodesPage> {
   List<Map<String, dynamic>> episodesData = [];
   String description = "";
+
+  late Player player = Player();
+  late VideoController controller = VideoController(player);
+
   @override
   void initState() {
+    MediaKit.ensureInitialized();
     super.initState();
     VidstreamScraper.episodesList(widget.episodeUrl).then((value) {
       episodesData = value;
       description = value[0]['description'];
       setState(() {});
     });
+  }
+
+  @override
+  void dispose() {
+    player.dispose();
+    super.dispose();
   }
 
   @override
@@ -42,7 +55,10 @@ class _EpisodesPageState extends State<EpisodesPage> {
               Icons.arrow_back,
               color: Colors.white,
             ),
-            onPressed: () => (Navigator.pop(context)),
+            onPressed: () {
+              (Navigator.pop(context));
+              player.dispose();
+            },
           ),
         ),
         body: Column(
@@ -76,17 +92,30 @@ class _EpisodesPageState extends State<EpisodesPage> {
                 ),
               ],
             ),
+            Flexible(
+              child: SizedBox(
+                width: 600,
+                height: 300,
+                child: Video(
+                  controller: controller,
+                ),
+              ),
+            ),
             Expanded(
-              child: ListView.builder(
-                  itemCount: episodesData.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return EpisodeCardComponent.episodeCard(
-                        episodesData[index]['title'],
-                        episodesData[index]["image"],
-                        episodesData[index]["release_date"],
-                        episodesData[index]['link'],
-                        context);
-                  }),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListView.builder(
+                    itemCount: episodesData.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return EpisodeCardComponent.episodeCard(
+                          episodesData[index]['title'],
+                          episodesData[index]["image"],
+                          episodesData[index]["release_date"],
+                          episodesData[index]['link'],
+                          context,
+                          player);
+                    }),
+              ),
             ),
           ],
         ),

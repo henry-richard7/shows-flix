@@ -16,28 +16,45 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   List<Map<String, dynamic>> popularShows = [];
   List<Map<String, dynamic>> ongoingShows = [];
 
+  bool recentlyAddedSubsLoaded = false;
+  bool recentlyRawsLoaded = false;
+  bool recentlyAddedMoviesLoaded = false;
+  bool onGoingShowsLoaded = false;
+  bool popularShowsLoaded = false;
+
   @override
   void initState() {
-    super.initState();
     VidstreamScraper.recentlyAdded().then((value) {
       recentlyAddedSubs = value;
-
-      VidstreamScraper.recentlyAddedRaw().then((value_2) {
-        recentlyAddedRaws = value_2;
-
-        VidstreamScraper.recentlyAddedMovies().then((value_3) {
-          recentlyAddedMovies = value_3;
-
-          VidstreamScraper.popularShows().then((value_4) {
-            popularShows = value_4;
-            VidstreamScraper.ongoingShows().then((value_5) {
-              ongoingShows = value_5;
-              setState(() {});
-            });
-          });
-        });
+      setState(() {
+        recentlyAddedSubsLoaded = true;
       });
     });
+    VidstreamScraper.recentlyAddedRaw().then((value) {
+      recentlyAddedRaws = value;
+      setState(() {
+        recentlyRawsLoaded = true;
+      });
+    });
+    VidstreamScraper.recentlyAddedMovies().then((value) {
+      recentlyAddedMovies = value;
+      setState(() {
+        recentlyAddedMoviesLoaded = true;
+      });
+    });
+    VidstreamScraper.ongoingShows().then((value) {
+      ongoingShows = value;
+      setState(() {
+        onGoingShowsLoaded = true;
+      });
+    });
+    VidstreamScraper.popularShows().then((value) {
+      popularShows = value;
+      setState(() {
+        popularShowsLoaded = true;
+      });
+    });
+    super.initState();
   }
 
   @override
@@ -50,14 +67,20 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
       ),
-      HomePageWidgets.homePageGrid(recentlyAddedSubs, context),
+      (recentlyAddedSubsLoaded)
+          ? HomePageWidgets.homePageGrid(recentlyAddedSubs, context)
+          : const Center(child: CircularProgressIndicator()),
+      // Raw Section
       const Padding(
           padding: EdgeInsets.all(8.0),
           child: Text(
             "Recently Updated Raws",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
           )),
-      HomePageWidgets.homePageGrid(recentlyAddedRaws, context),
+      (recentlyRawsLoaded)
+          ? HomePageWidgets.homePageGrid(recentlyAddedRaws, context)
+          : const Center(child: CircularProgressIndicator()),
+      // Movies Section
       const Padding(
         padding: EdgeInsets.all(8.0),
         child: Text(
@@ -65,7 +88,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
       ),
-      HomePageWidgets.homePageGrid(recentlyAddedMovies, context),
+      (recentlyAddedMoviesLoaded)
+          ? HomePageWidgets.homePageGrid(recentlyAddedMovies, context)
+          : const Center(child: CircularProgressIndicator()),
+      // Popular Section
       const Padding(
         padding: EdgeInsets.all(8.0),
         child: Text(
@@ -73,7 +99,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
       ),
-      HomePageWidgets.homePageGrid(popularShows, context),
+      (popularShowsLoaded)
+          ? HomePageWidgets.homePageGrid(popularShows, context)
+          : const Center(child: CircularProgressIndicator()),
+      // Ongoing Section
       const Padding(
         padding: EdgeInsets.all(8.0),
         child: Text(
@@ -81,7 +110,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
       ),
-      HomePageWidgets.homePageGrid(ongoingShows, context),
+      (popularShowsLoaded)
+          ? HomePageWidgets.homePageGrid(ongoingShows, context)
+          : const Center(child: CircularProgressIndicator()),
     ]);
   }
 }

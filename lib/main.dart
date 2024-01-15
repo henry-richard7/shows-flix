@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shows_flix/Pages/home_page.dart';
-import 'package:shows_flix/Scraper/vidstream_scraper.dart';
 
 void main() {
   runApp(const MainApp());
@@ -16,7 +15,6 @@ class MainApp extends StatefulWidget {
 class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
-    VidstreamScraper.recentlyAdded();
     return MaterialApp(
       home: Scaffold(
           appBar: AppBar(
@@ -24,7 +22,10 @@ class _MainAppState extends State<MainApp> {
             titleTextStyle: const TextStyle(color: Colors.white, fontSize: 20),
             backgroundColor: Colors.blue,
           ),
-          body: const HomePageWidget()),
+          body: const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: HomePageWidget(),
+          )),
     );
   }
 }
