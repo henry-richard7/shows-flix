@@ -17,6 +17,7 @@ jobs:
         with:
           artifacts: "build/windows/x64/runner/Release/ShowsFlix.zip"
           tag: v1.0${{github.run_number}}
+          allowUpdates: true
           token: ${{ secrets.GITHUB_TOKEN }}
 
   build-android:
@@ -35,6 +36,7 @@ jobs:
       - name: Create Android Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "build/app/outputs/apk/debug/"
+          artifacts: "build/app/outputs/apk/debug/*"
+          allowUpdates: true
           tag: v1.0${{github.run_number}}
           token: ${{ secrets.GITHUB_TOKEN }}
