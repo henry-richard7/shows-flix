@@ -112,12 +112,13 @@ class _EpisodesPageState extends State<EpisodesPage> {
                     itemCount: episodesData.length,
                     itemBuilder: (BuildContext context, int index) {
                       return EpisodeCardComponent.episodeCard(
-                          episodesData[index]['title'],
-                          widget.image,
-                          episodesData[index]["release_date"],
-                          episodesData[index]['link'],
-                          context,
-                          player);
+                        episodesData[index]['title'],
+                        widget.image,
+                        episodesData[index]["release_date"],
+                        episodesData[index]['link'],
+                        context,
+                        player,
+                      );
                     }),
               ),
             ),
