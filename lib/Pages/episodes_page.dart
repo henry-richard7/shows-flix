@@ -93,11 +93,14 @@ class _EpisodesPageState extends State<EpisodesPage> {
               ],
             ),
             Flexible(
-              child: SizedBox(
-                width: 600,
-                height: 300,
-                child: Video(
-                  controller: controller,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  width: 800,
+                  height: 600,
+                  child: Video(
+                    controller: controller,
+                  ),
                 ),
               ),
             ),

@@ -10,7 +10,10 @@ class EpisodeCardComponent {
       child: InkWell(
         child: ListTile(
           leading: Image.network(image),
-          title: Text(title),
+          title: Text(
+            title,
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
           subtitle: Text(releaseDate),
         ),
         onTap: () {
