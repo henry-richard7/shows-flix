@@ -4,7 +4,7 @@ import 'package:encrypt/encrypt.dart';
 import 'dart:convert';
 
 class VidstreamScraper {
-  static const String baseUrl = "https://asianload.info";
+  static const String baseUrl = "https://draplay.info";
   static Map<String, String> headers = {
     "User-Agent":
         "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.0.43 Safari/537.36"
